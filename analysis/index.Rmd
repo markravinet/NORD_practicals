@@ -8,4 +8,17 @@ editor_options:
   chunk_output_type: console
 ---
 
-Welcome to my research website.
+## Overview
+
+Welcome to the website for Nord 2022 BIO9001 course. Today we are going to learn how to infer selection in the genome and then learn about identifying introgression.
+
+### Inferring selection
+
+1. [Carry out a sliding window-analysis of *F*<sub>ST</sub> and *d*<sub>XY</sub> on a dataset of *Passer* sparrows](practical1.html)
+2. [Calculate haplotype homozygosity statistics between two *Passer* sparrow species](practical2.html)
+3. [Use this pairwise analysis to identify candidate genes in the genome](practical3.html)
+
+### Admixture, introgression and gene flow
+
+4. [Detect introgression and admixture between species using D statistics](practical4.html)
+
