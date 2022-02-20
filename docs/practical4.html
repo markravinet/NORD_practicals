@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Practical 4</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">NORD_practicals</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Practical 4</h1>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2022-02-20
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+</p>
+<p>
+<strong>Knit directory:</strong> <code>NORD_practicals/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20220220code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20220220)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20220220code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20220220)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongbb16688"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> bb16688 </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongbb16688" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version bb16688. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .DS_Store
+    Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
+    Ignored:    analysis/.DS_Store
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+
+<p>
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/practical4.Rmd</code>) and HTML (<code>docs/practical4.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
+</p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+bb16688
+</td>
+<td>
+markravinet
+</td>
+<td>
+2022-02-20
+</td>
+<td>
+Publish initial files for tutorials
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div id="detecting-introgression" class="section level1">
+<h1>Detecting introgression</h1>
+<p>For this session, we are going to use genomic data to test whether we can detect introgression between species. In order to do this we will use a number of tools implemented in the R environment.</p>
+<p>The majoity of our inference will be using ADMIXTOOLS which is a software package developed by the David Reich group. You can find more information <a href="https://github.com/DReichLab/AdmixTools">here</a>. It can be a little tricky to use for beginners (and indeed, more advanced users too!). A more straightforward way to use ADMIXTOOLS is using the <code>R</code> package <code>admixr</code> which is well <a href="https://github.com/bodkan/admixr">documented</a> with clear <a href="https://bodkan.net/admixr/articles/tutorial.html">tutorials</a>. Note that <code>admixr</code> does not replace ADMIXTOOLS, but instead requires a local installation of the program to run - it is essentially an interface for the software. To run it for the course, we will be using an <a href="https://www.rstudio.com/products/rstudio/download-server/">RStudio Server</a>.</p>
+<p>An additional note - there is now <a href="https://uqrmaie1.github.io/admixtools/articles/admixtools.html">ADMIXTOOLS2</a>, which is built to run entirely in R. It is still a little complex for teaching purposes but it is well worth investing time in if you are interested in investigating introgression.</p>
+<div id="generating-the-input-files" class="section level3">
+<h3>Generating the input files</h3>
+<p>ADMIXTOOLS requires <code>eigenstrat</code> input files. To convert a vcf file to eigenstrat, we will use a conversion script written by a colleague of mine, Joana Meier. That script just requires the name of the vcf file (NB - the script can use uncompressed vcfs too). We are going to use a dataset of whole genome resequencing data from <em>Passer</em> sparrows.</p>
+<pre class="shell"><code># move to your home directory
+cd ~
+# make a directory for ADMIXTOOLS analyses
+mkdir admixtools
+
+# move into that new folder
+cd admixtools
+
+# copy the dogs dataset to the new folder
+cp /home/file_share/Session8/sparrows_chr8_unphased.vcf.gz ./
+
+# copy the conversion script to your directory
+cp /home/file_share/Session8/convertVCFtoEigenstrat.sh .
+
+# Convert the vcf to the eigenstrat format required by AMDIXTOOLS
+sh convertVCFtoEigenstrat.sh sparrows_chr8_unphased.vcf.gz</code></pre>
+</div>
+<div id="preparing-the-r-environment" class="section level3">
+<h3>Preparing the R environment</h3>
+<p>The first step you need to take is to load the <code>admixr</code> package in <code>R</code>. You can do this like so:</p>
+<pre class="r"><code>library(admixr)</code></pre>
+<p>With <code>admixr</code> loaded, we are now ready to tell the package where to look for the data. We will set a data prefix so it knows what to look for:</p>
+<pre class="r"><code># set data prefix
+data_prefix &lt;- &quot;./admixtools/sparrows&quot;</code></pre>
+<p>Once this is done, we can then load the data like so:</p>
+<pre class="r"><code># read in data
+snps &lt;- eigenstrat(data_prefix)</code></pre>
+<p>Finally, we can count our SNPs to get an idea of how much workable data we have.</p>
+<pre class="r"><code># count SNPs
+snp_info &lt;- count_snps(snps)</code></pre>
+<p>Now we are ready to calculate some statistics!</p>
+</div>
+<div id="d-statistics" class="section level3">
+<h3>D statistics</h3>
+<p>D statistics, sometimes called ABBA-BABA tests are a simple way to test for hybridization. Let W, X, Y, Z be four taxa (populations, species, individuals) with a phylogeny ((W,X),Y),Z), with W and X being the focal species, Y the tested species potentially introgressing with W or X, and Z the outgroup used to polarize variants as ancestral (A) or derived (B). Under incomplete lineage sorting only (no hybridization), the number of discordant SNPs grouping W and Y together (BABA patterns) should be roughly equal to the number of SNPs grouping X and Y together (ABBA). The formula implemented in ADMIXTOOLS to compute the D statistic is based on allele frequencies and allows one or multiple individuals per taxon:</p>
+<p>For each SNP:</p>
+<pre class="math"><code>num = (w − x)(y − z )
+den = (w + x − 2wx)(y + z − 2yz )</code></pre>
+<p>Summed across all SNPs:</p>
+<pre class="math"><code>D = sum(num) / sum(den)</code></pre>
+<p>If a single sequence (haploid individual) is used per population, this formula equals to:</p>
+<pre class="math"><code>D = (nBABA - nABBA) / (nBABA+nABBA)</code></pre>
+<p>Note, that D statistics are often calculated as ABBA-BABA, whereas <code>ADMIXTOOLS</code> (and by extension <code>admixr</code>) computes BABA-ABBA. It is thus very important to check which formula is used to correctly interpret the results.</p>
+<p><code>ADMIXTOOLS</code> also outputs z-scores which are the number of standard errors that D deviates from 0. An absolute z score of 3 is generally accepted as significant. If W and X share equal amounts of alleles with Y, D will be 0, or at least the absolute z-score will be below 3. If the D statistic is positive and z&gt;3, W and Y show excess allele sharing. If the D statistic is negative and z&lt;(-3), X and Y show excess allele sharing.</p>
+<p>Using <code>ADMIXTOOLS</code> to get a whole-genome point estimate of the D statistic is particularly useful to test multiple different populations for hybridization and to get an overview who hybridized with whom. If it is already known which populations are hybridizing, we would recommend to directly do genome-scans of introgression using fd. Whole-genome estimates of the D statistic work do not require whole-genome sequencing and work well with RAD data and UCEs. <strong>However, we would also recommend you treat results with less than 50 ABBA or 50 BABA patterns with caution</strong>.</p>
+<p>Let’s first test if house sparrows from Europe and Spanish sparrows share more alleles with one another than expected by chance. Her we use the tree sparrow as an outgroup.</p>
+<pre class="r"><code>d1 &lt;- d(W = &quot;house-european_house-uk&quot;, X = &quot;bactrianus-bactrianus-kazahkstan&quot;, Y =  &quot;spanish-spanish-cv&quot;, Z = &quot;tree&quot;, data = snps)</code></pre>
+<p>Look at the results. Note that <code>admixr</code> formats its results using <code>tidyr</code> principles.</p>
+<p>The number of SNPs differs for different combinations of four taxa because only SNPs covered by all four taxa are used. The standard error used to compute the z-score is estimated with a block-jackknife procedure taking linkage among markers into account.</p>
+<p>A nice thing about <code>admixr</code> is that it makes it really easy to perform tests on multiple populations in one go. For example, what if we want to perform <em>D</em> statistic tests fpr all European house and Italian sparrow populations? To do that, all we need to do is use some of our <code>R</code> skills in order to extract the population names.</p>
+<pre class="r"><code>pops &lt;- snp_info %&gt;% filter(grepl(&quot;^house|^italian&quot;, label)) %&gt;% pull(label) %&gt;% unique()</code></pre>
+<p>Then we can run the command as we did before, just with <code>W = pops</code> instead.</p>
+<pre class="r"><code>d2 &lt;- d(W = pops, X = &quot;bactrianus-bactrianus-kazahkstan&quot;, Y = &quot;spanish-spanish-cv&quot;, Z = &quot;tree&quot;, data = snps)</code></pre>
+<p>That’s a lot of tests, but of course because we are using R it is very easy to plot our results…</p>
+</div>
+<div id="f4-tests" class="section level3">
+<h3>f4 tests</h3>
+<p>Sometimes we might want to run an f4 test instead of the D statistic. This is a test of whether four taxa are two pairs of sister taxa ((W,X),(Y,Z)).</p>
+<p>Let’s try this with the following test:</p>
+<pre class="r"><code>f1 &lt;- f4(W = &quot;house-european_house-uk&quot;, X = &quot;bactrianus-bactrianus-kazahkstan&quot;,
+         Y = &quot;spanish-spanish-kazahkstan&quot;, Z = &quot;spanish-spanish-cv&quot;, data = snps)</code></pre>
+<p>Then we look at the results</p>
+<pre class="r"><code>f1</code></pre>
+<p>The f4 test can be useful if no outgroup is available. It can also be used to test for subtle excess allele sharing between two pairs with parallel selection. In the Pundamilia case, we could use it to test for excess allele sharing between the two red and the two blue species. D statistics can be biased if the outgroup is not a real outgroup but shows excess allele sharing with either W or X. In that case, Any taxon used as Y will result in significant D statistics. Ideally, one would thus run each test with different outgroups and also run some control tests with taxa used as Y that are unlikely to have hybridized with W or X. If that is not possible, f4 tests might help to make sure that the D statistic results are robust.</p>
+<p>Let’s try some other examples:</p>
+<pre class="r"><code>f2 &lt;- f4(W = &quot;house-european_house-uk&quot;, X = &quot;bactrianus-bactrianus-kazahkstan&quot;,
+        Y = &quot;spanish-spanish_admix-badajoz_spain&quot;, Z = &quot;spanish-spanish-cv&quot;, data = snps)
+f2
+
+f3 &lt;- f4(W = &quot;house-european_house-uk&quot;, X = &quot;bactrianus-bactrianus-kazahkstan&quot;,
+        Y = &quot;spanish-spanish-cv&quot;, Z = &quot;tree&quot;, data = snps)
+f3</code></pre>
+</div>
+<div id="f4-ratio-test" class="section level3">
+<h3>f4 ratio test</h3>
+<p>F4 tests can also be used to estimate the admixture proportion if combined in a smart way. <code>ADMIXTOOLS</code> has a separate tool for computing f4 ratio tests to estimate admixture proportions. To perform an f4 ratio test, we need five taxa: A, B, X, C, O. The introgressed taxon “X”, its sister taxon “C”, the source of introgression “B” and its sister taxon “A”, and an outgroup “O”. The ancestry proportion of B in X is then computed as the ratio of these two f4 tests.</p>
+<pre class="shell"><code>alpha = f4(A,O; X,C)/ f4(A,O; B, C)</code></pre>
+<p>As an example, we will estimate the proportion of Spanish sparrow ancestry in a mainland population of Italian sparrows.</p>
+<p>Running this in <code>admixr</code> is simple:</p>
+<pre class="r"><code>f4r1 &lt;- f4ratio(X = &quot;italian-italian_mainland-crotone&quot;, A =  &quot;spanish-spanish-cv&quot;, B = &quot;spanish-spanish-kazahkstan&quot;, C = &quot;house-european_house-uk&quot;, O = &quot;tree&quot;, data = snps)</code></pre>
+<p>We can check the result:</p>
+<pre class="r"><code>f4r1</code></pre>
+<p>Here we can see that the Italian population collected from Crotone has 44% of its genome derived from the Spanish sparrow. But we heard earlier that this varied across the distribution of the Italian sparrow. So why don’t we run this test again for each population all at once?</p>
+<p>First, we get the Italian population information out:</p>
+<pre class="r"><code>italians &lt;- pops %&gt;% grep(&quot;italian&quot;, ., value = T)</code></pre>
+<p>Then we run the test for all at once</p>
+<pre class="r"><code>f4r2 &lt;- f4ratio(X = italians, A =  &quot;spanish-spanish-cv&quot;, B = &quot;spanish-spanish-kazahkstan&quot;, C = &quot;house-european_house-uk&quot;, O = &quot;tree&quot;, data = snps)</code></pre>
+<p>Once its done, we can check the results!</p>
+<pre class="r"><code>f4r2</code></pre>
+<p>And of course this being R, we can also plot these results.</p>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.1.2 (2021-11-01)
+Platform: x86_64-apple-darwin17.0 (64-bit)
+Running under: macOS Catalina 10.15.7
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_GB.UTF-8/en_GB.UTF-8/en_GB.UTF-8/C/en_GB.UTF-8/en_GB.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] workflowr_1.6.2
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.7       whisker_0.4      knitr_1.36       magrittr_2.0.1  
+ [5] R6_2.5.1         rlang_0.4.12     fastmap_1.1.0    fansi_0.5.0     
+ [9] stringr_1.4.0    tools_4.1.2      xfun_0.28        utf8_1.2.2      
+[13] git2r_0.28.0     jquerylib_0.1.4  htmltools_0.5.2  ellipsis_0.3.2  
+[17] rprojroot_2.0.2  yaml_2.2.1       digest_0.6.28    tibble_3.1.5    
+[21] lifecycle_1.0.1  crayon_1.4.2     later_1.3.0      vctrs_0.3.8     
+[25] promises_1.2.0.1 fs_1.5.0         glue_1.5.0       evaluate_0.14   
+[29] rmarkdown_2.11   stringi_1.7.5    compiler_4.1.2   pillar_1.6.4    
+[33] httpuv_1.6.3     pkgconfig_2.0.3 </code></pre>
+</div>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
