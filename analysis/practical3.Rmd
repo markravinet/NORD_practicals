@@ -20,7 +20,7 @@ At some point in this tutorial, we will need the gene annotation for the house s
 # move into rehh
 cd rehh
 # copy from the shared directory
-cp /shared/mark/genome_scan/misc/house_sparrow_chr8.gff .
+cp /home/example_data/session_08/house_sparrow_chr8.gff .
 ```
 
 We'll explain what this file is later, for now we should be ready to run the analysis in R.

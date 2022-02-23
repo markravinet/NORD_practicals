@@ -66,7 +66,7 @@ cd genome_scan
 Then we copy over our data into this directory we have just created:
 
 ```shell
-cp /shared/mark/genome_scan/vcf/sparrows_chr8_subset.vcf.gz ./
+cp /home/example_data/session_08/sparrows_chr8_subset.vcf.gz ./
 ```
 Before we go further with converting the file, it is worth looking at it in a bit more detail to get some idea of what it contains:
 
@@ -153,7 +153,7 @@ We can get the real data like so:
 
 ```shell
 cd genome_scan
-cp /shared/mark/genome_scan/outputs/house_bac_div_stats.csv
+cp /home/data/session_08/house_bac_div_stats.csv
 ```
 
 Now we will turn to `R` to visualise our data. The first thing we need to do is prepare the `R` environment.

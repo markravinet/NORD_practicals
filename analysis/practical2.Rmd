@@ -18,7 +18,7 @@ Remember that above, we performed our phasing on a drastically reduced dataset i
 cd ~
 mkdir rehh
 cd rehh
-cp /shared/mark/genome_scan/vcf/[hb]*.vcf.gz .
+cp /home/example_data/session_08/vcf/[hb]*.vcf.gz .
 ```
 
 These are the full vcfs for the house and bactrianus datasets that we can read into `R` to perform our genome scan with.

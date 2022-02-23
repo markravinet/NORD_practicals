@@ -29,11 +29,11 @@ mkdir admixtools
 # move into that new folder
 cd admixtools
 
-# copy the dogs dataset to the new folder
-cp /home/file_share/Session8/sparrows_chr8_unphased.vcf.gz ./
+# copy the sparrows dataset to the new folder
+cp /home/example_data/session_09/sparrows_chr8_unphased.vcf.gz ./
 
 # copy the conversion script to your directory
-cp /home/file_share/Session8/convertVCFtoEigenstrat.sh .
+cp /home/example_data/session_09/convertVCFtoEigenstrat.sh .
 
 # Convert the vcf to the eigenstrat format required by AMDIXTOOLS
 sh convertVCFtoEigenstrat.sh sparrows_chr8_unphased.vcf.gz
