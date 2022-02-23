@@ -153,7 +153,7 @@ We can get the real data like so:
 
 ```shell
 cd genome_scan
-cp /home/data/session_08/house_bac_div_stats.csv
+cp /home/example_data/session_08/house_bac_div_stats.csv .
 ```
 
 Now we will turn to `R` to visualise our data. The first thing we need to do is prepare the `R` environment.
