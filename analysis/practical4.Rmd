@@ -16,9 +16,11 @@ The majoity of our inference will be using ADMIXTOOLS which is a software packag
 
 An additional note - there is now [ADMIXTOOLS2](https://uqrmaie1.github.io/admixtools/articles/admixtools.html), which is built to run entirely in R. It is still a little complex for teaching purposes but it is well worth investing time in if you are interested in investigating introgression. 
 
-### Generating the input files
+### Getting the input files
 
-ADMIXTOOLS requires `eigenstrat` input files. To convert a vcf file to eigenstrat, we will use a conversion script written by a colleague of mine, Joana Meier. That script just requires the name of the vcf file (NB - the script can use uncompressed vcfs too). We are going to use a dataset of whole genome resequencing data from *Passer* sparrows.
+ADMIXTOOLS requires `eigenstrat` input files. We will not cover how to convert a vcf to these here but there are scripts and guides available online. A good example is a conversion script written by a colleague and friend of mine, Joana Meier [here](https://github.com/speciationgenomics/scripts/blob/master/convertVCFtoEigenstrat.sh)
+
+For now, we will copy over some files to do the work necessary.
 
 ```shell
 # move to your home directory
@@ -30,13 +32,7 @@ mkdir admixtools
 cd admixtools
 
 # copy the sparrows dataset to the new folder
-cp /home/example_data/session_09/sparrows_chr8_unphased.vcf.gz ./
-
-# copy the conversion script to your directory
-cp /home/example_data/session_09/convertVCFtoEigenstrat.sh .
-
-# Convert the vcf to the eigenstrat format required by AMDIXTOOLS
-sh convertVCFtoEigenstrat.sh sparrows_chr8_unphased.vcf.gz
+cp /home/example_data/session_09/sparrows* ./
 ```
 
 ### Preparing the R environment
